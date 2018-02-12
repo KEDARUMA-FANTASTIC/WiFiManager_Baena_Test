@@ -1,0 +1,3 @@
+[submodule "lib/WiFiManager_Baena"]
+	path = lib/WiFiManager_Baena
+	url = https://github.com/KEDARUMA-FANTASTIC/WiFiManager_Baena.git

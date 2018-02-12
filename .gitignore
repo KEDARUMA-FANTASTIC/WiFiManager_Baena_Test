@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+.pioenvs
+.piolibdeps
+CMakeListsPrivate.txt
+.idea
+cmake-build-debug

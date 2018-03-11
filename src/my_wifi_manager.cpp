@@ -3,7 +3,12 @@
 //
 
 #include "my_wifi_manager.h"
+#ifdef ESP8266
 #include <ESP8266HTTPClient.h>
+#endif
+#ifdef ESP32
+#include <HTTPClient.h>
+#endif
 #include <array>
 #include <functional>
 
@@ -167,4 +172,3 @@ void MyWifiManager::bindHandler() {
   server->on("/custom_setting_ping_test", std::bind(&MyWifiManager::handle_custom_ping_test, this));
   server->on("/custom_setting_wifi_setting_reset", std::bind(&MyWifiManager::handle_custom_wifi_setting_reset, this));
 }
-

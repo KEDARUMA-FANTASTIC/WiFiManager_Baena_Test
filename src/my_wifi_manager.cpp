@@ -4,6 +4,8 @@
 
 #include "my_wifi_manager.h"
 #include <ESP8266HTTPClient.h>
+#include <array>
+#include <functional>
 
 using namespace wifiman_const;
 

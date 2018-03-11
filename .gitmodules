@@ -1,3 +1,9 @@
 [submodule "lib/WiFiManager_Baena"]
 	path = lib/WiFiManager_Baena
 	url = https://github.com/KEDARUMA-FANTASTIC/WiFiManager_Baena.git
+[submodule "lib/WebServer-esp32"]
+	path = lib/WebServer-esp32
+	url = https://github.com/KEDARUMA-FANTASTIC/WebServer-esp32
+[submodule "lib/DNSServer---esp32"]
+	path = lib/DNSServer---esp32
+	url = https://github.com/KEDARUMA-FANTASTIC/DNSServer---esp32

@@ -112,7 +112,7 @@ int MyWifiManager::http_test(String host) {
 }
 
 void MyWifiManager::handle_custom_setting_from() {
-  DEBUG_WM(__PRETTY_FUNCTION__);
+  DEBUG_WM(F(__PRETTY_FUNCTION__));
 
   String page = get_html_head();
   page += get_html_head_end();
@@ -134,7 +134,7 @@ void MyWifiManager::handle_custom_setting_from() {
 }
 
 void MyWifiManager::handle_custom_setting_store() {
-  DEBUG_WM(__PRETTY_FUNCTION__);
+  DEBUG_WM(F(__PRETTY_FUNCTION__));
 
   interval_ = static_cast<uint32_t>(server->arg(F("interval")).toInt());
   server->sendHeader(FPSTR(FS_LOCATION), F("/custom_setting_from"), true);
@@ -142,7 +142,7 @@ void MyWifiManager::handle_custom_setting_store() {
 }
 
 void MyWifiManager::handle_custom_ping_test() {
-  DEBUG_WM(__PRETTY_FUNCTION__);
+  DEBUG_WM(F(__PRETTY_FUNCTION__));
 
   ping_host_ = server->arg(F("host"));
   DEBUG_WM(String("ping host = " + ping_host_));
@@ -155,14 +155,14 @@ void MyWifiManager::handle_custom_ping_test() {
 }
 
 void MyWifiManager::handle_custom_wifi_setting_reset() {
-  DEBUG_WM(__PRETTY_FUNCTION__);
+  DEBUG_WM(F(__PRETTY_FUNCTION__));
 
   resetSettings();
   handleReset();
 }
 
 void MyWifiManager::bindHandler() {
-  DEBUG_WM(__PRETTY_FUNCTION__);
+  DEBUG_WM(F(__PRETTY_FUNCTION__));
 
   WiFiManager::bindHandler();
 

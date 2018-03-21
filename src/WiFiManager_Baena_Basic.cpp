@@ -5,11 +5,23 @@
 #include <Arduino.h>
 #include "my_wifi_manager.h"
 
-namespace {
+#ifdef ESP32
+#include <Preferences.h>
+Preferences preferences;
+#include <EEPROM.h>
+#endif
 
+namespace {
 // Access point name
 // アクセスポイント名
+#ifdef ESP8266
 const char ap_name_[] PROGMEM = "MY ESP8266";
+#endif
+#ifdef ESP32
+//#include <Preferences.h>
+//Preferences preferences;
+const char ap_name_[] PROGMEM = "MY ESP32";
+#endif
 // Access point authentication password
 // 認証パスワード
 const char ap_passwd_[] PROGMEM = "12345678";
@@ -19,18 +31,30 @@ MyWifiManager wifi_manager_;
 unsigned long last_millis_ = 0;
 bool is_led_on_ = false;
 
-} // namespace
+#ifdef ESP8266
+constexpr int LED_PIN = LED_BUILTIN;
+#endif
 
+#ifdef ESP32
+constexpr int LED_PIN = 16;
+#endif
+} // namespace
 
 void setup()
 {
+  delay(1000);
+
+#ifdef ESP8266
+  Serial.begin(9600);
+#endif
+#ifdef ESP32
+  Serial.begin(115200);
+#endif
+
   // Grace to write to flash
   delay(5000);
 
-  Serial.begin(9600);
-  Serial.println("\n\n\nhello!!!");
-
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(LED_PIN, OUTPUT);
 
   String ap_name = FPSTR(ap_name_);
   String ap_passwd = FPSTR(ap_passwd_);
@@ -59,11 +83,14 @@ void loop()
 
     is_led_on_ = !is_led_on_;
     if (is_led_on_) {
-      digitalWrite(LED_BUILTIN, HIGH);
+      digitalWrite(LED_PIN, HIGH);
       Serial.println("<<< ON >>>");
     } else {
-      digitalWrite(LED_BUILTIN, LOW);
+      digitalWrite(LED_PIN, LOW);
       Serial.println("<<< OFF >>>");
     }
   }
 }
+
+
+
